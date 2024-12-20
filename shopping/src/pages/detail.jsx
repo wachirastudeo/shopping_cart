@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { products } from "../products";
-
+import { useDispatch } from "react-redux";
+import { addToCart } from "../stores/cart";
 const Detail = () => {
+  const dispatch = useDispatch();
+
   const { slug } = useParams();
   const [detail, setDetail] = useState([]);
   const [quantity, setQuantity] = useState(1);
@@ -24,6 +27,14 @@ const Detail = () => {
   };
   const handlePlusQuantity = () => {
     setQuantity(quantity + 1);
+  };
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        productId: detail.id,
+        quantity: quantity,
+      })
+    );
   };
   return (
     <div>
@@ -53,6 +64,12 @@ const Detail = () => {
                 +
               </button>
             </div>
+            <button
+              className="bg-gray-300 p-2 mx-5 rounded-md text-sm hover:bg-gray-400 flex gap-2"
+              onClick={handleAddToCart}
+            >
+              Add To Cart
+            </button>
           </div>
           <div>
             <p className="text-lg ">{detail.description}</p>
