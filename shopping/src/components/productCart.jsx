@@ -22,11 +22,11 @@ const ProductsCart = (props) => {
         <img
           src={image}
           alt={name}
-          className="w-full h-full object-cover drop-shadow-lg"
+          className="w-full px-5 h-full object-cover drop-shadow-lg"
         />
       </Link>
       <div className="mt-4">
-        <h3 className="text-xl  py-3 text-center font-medium">{name}</h3>
+        <h2 className="text-sm  pb-5 text-center font-medium">{name}</h2>
         <div className="flex justify-between items-center">
           <p className="text-gray-600">${price}</p>
           <button
