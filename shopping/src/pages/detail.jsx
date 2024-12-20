@@ -16,7 +16,7 @@ const Detail = () => {
   }, [slug]);
 
   const handleMinusQuantity = () => {
-    if (quantity - 1 > 1) {
+    if (quantity > 1) {
       setQuantity(quantity - 1);
     } else {
       setQuantity(1);
@@ -37,13 +37,13 @@ const Detail = () => {
           <p className="text-3xl font-bold"> ${detail.price}</p>
           <div className="flex gap5">
             <div className="flex  justify-center items-center gap-2">
-              <button className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center">
-                -
-              </button>
-              <span
-                className="bg-gray-200 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center"
+              <button
+                className="bg-gray-100 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center"
                 onClick={handleMinusQuantity}
               >
+                -
+              </button>
+              <span className="bg-gray-200 h-full w-10 font-bold text-xl rounded-xl flex justify-center items-center">
                 {quantity}
               </span>
               <button
