@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import iconCart from "../assets/images/iconCart.png";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { toggleStatusTab } from "../stores/cart";
 const Header = () => {
   const [totalQuantity, setTotalQuantity] = useState(0);
   const carts = useSelector((store) => store.cart.items);
+  const dispatch = useDispatch();
   useEffect(() => {
     let total = 0;
     carts.forEach((item) => {
@@ -14,12 +15,19 @@ const Header = () => {
     setTotalQuantity(total);
   }, [carts]);
 
+  const handleOpenTabCart = () => {
+    dispatch(toggleStatusTab());
+  };
+
   return (
     <header className="flex items-center justify-between p-4">
       <Link className="text-xl font-semibold" to="/">
         Home
       </Link>
-      <div className="w-10 h-10 bg-gray-100 rounded-full flex justify-center items-center relative">
+      <div
+        className="w-10 h-10 bg-gray-100 rounded-full flex justify-center items-center relative"
+        onClick={handleOpenTabCart}
+      >
         <img src={iconCart} alt="Shopping Cart" className="w-6" />
         <span className="absolute top-0 right-0 bg-red-500 text-white text-sm w-5 h-5 rounded-full flex justify-center items-center">
           {totalQuantity}
